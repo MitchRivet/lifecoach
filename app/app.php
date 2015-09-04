@@ -15,14 +15,18 @@
 
     $app['debug'] = true;
 
+
     $server = 'mysql:host=localhost;dbname=lifecoach';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $DB = new PDO($server, $username, $password);
 
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
+
+
+    session_start();
 
 
     // Create default Project for all users for adding Chores
@@ -47,21 +51,27 @@
     });
 
     $app->get('/dashboard', function() use ($app) {
-        return $app['twig']->render('dashboard.html.twig');
+        unset($_SESSION['pcount']);
+        $_SESSION['pcount'] = Project::countProjects();
+        $new_user = new User("","");
+        $user = $new_user->authenticate($_SESSION['gemail']);
+        return $app['twig']->render('dashboard.html.twig', array('user' => $user,'project_number' => $_SESSION['pcount']));
     });
 
     $app->post("/dashboard", function() use ($app) {
-        $email = $_POST['email'];
+        unset($_SESSION['gemail']);
+        $_SESSION['gemail'] = $_POST['email'];
         $password = $_POST['password'];
-        $new_user = new User(preg_quote($_POST['email'], "'"),preg_quote($_POST['password'], "'") );
-        $new_user->save();
-        $user = $new_user->authenticate($email);
+        $new_user = new User("",preg_quote($_POST['email'], "'"),preg_quote($_POST['password'], "'") );
+        $user = $new_user->authenticate($_SESSION['gemail']);
         if ( $user != null ) {
-            $count = Project::countProjects();
-            return $app['twig']->render('dashboard.html.twig', array('user' => $user,'project_number' => $count));
+            $_SESSION['pcount'] = Project::countProjects();
+            return $app['twig']->render('dashboard.html.twig', array('user' => $user,'project_number' => $_SESSION['pcount']));
         }
-        else { return $app['twig']->render('index.html.twig'); }
+        else { return $app['twig']->render('error.html.twig'); }
     });
+
+
 
 
     // Include Other Routes

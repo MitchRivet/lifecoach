@@ -8,6 +8,7 @@
       private $completed;
       private $id;
 
+
       function __construct($name, $motivation, $interval_days, $completed, $id = null)
       {
         $this->name = $name;

@@ -2,13 +2,13 @@
 
     class User
     {
-        private $name;
-        private $email;
+        public $name;
+        public $email;
         private $password;
         private $id;
 
 
-        function __construct($name, $email, $id=null, $password="")
+        public function __construct($name, $email, $id=null, $password="")
         {
             $this->name = $name;
             $this->email = $email;
@@ -55,8 +55,9 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO users (name,email) VALUES ('{$this->name}','{$this->email}');");
-            $this->id = $GLOBALS['DB']->lastInsertId();
+            //$GLOBALS['DB']->exec("INSERT INTO users (name,email) VALUES ('{$this->name}','{$this->email}');");
+            //$this->id = $GLOBALS['DB']->lastInsertId();
+            //$_SESSION['gemail'] = $this->email;
         }
 
 
@@ -82,7 +83,7 @@
         {
             $user_query = $GLOBALS['DB']->query("SELECT * FROM users WHERE email = '{$email}';");
 
-            $found_user = null; 
+            $found_user = null;
             foreach($user_query as $user) {
                 $found_user = new User($user['name'],$user['email'],$user['id']);
             }

@@ -14,10 +14,6 @@
     }
 
 
-
-    // Project page routes ===================================================
-
-
     // List all current Projects
     $project->get('/current_projects', function() use ($app) {
         return $app['twig']->render('project/current_projects.html.twig',
@@ -85,10 +81,6 @@
 
 
 
-
-    // Step page routes =====================================================
-
-
     // Add Step
     $project->post('/project/{id}', function($id) use ($app) {
         $project = Project::find($id);
@@ -98,17 +90,6 @@
             array('project' => $project, 'steps' => $project->getSteps())
         );
     });
-
-    // $project->patch('/project/{id}', function($id) use ($app) {
-    //     $project = Project::find($id);
-    //
-    //
-    //
-    // })
-
-
-
-
 
 
 
