@@ -1,14 +1,22 @@
-<html>
-  <head>
-    <title></title>
-  </head>
+{% set vars = {
+    'page_title': 'New Habit Name',
+    'css_url': '/css/new_habit_styles.css'
+}
+
+%}
+{% include 'partials/header.html.twig' with vars %}
+
   <body>
+      <!-- Navbar twig template -->
+
+      {% set active_page = '/habit/new_habit_name' %}
+      {% include 'partials/nav.html' %}
     <h1>Hey, Asshole!</h1>
     <p>Remember why you want to add this habit?</p>
     <br>
     <p>{{ motivation }}</p>
     <br>
-    <p>You've only done this for {{ days }} days</p> 
+    <p>You've only done this for {{ days }} days</p>
     <h3>Go do it right now!</h3>
   <a href="/habit/current_habits">go back to current habits</a>
   </body>
