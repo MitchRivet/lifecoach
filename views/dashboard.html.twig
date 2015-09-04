@@ -1,0 +1,64 @@
+<!-- Header twig template -->
+
+{% set vars = {
+  'page_title': 'Dashboard',
+  'css_url': '/css/dashboard.css'
+}
+
+%}
+
+{% include 'partials/header.html.twig' with vars %}
+
+
+
+    <body>
+
+        <!-- Nabar twig template -->
+
+        {% set active_page = '/dashboard' %}
+        {% include 'partials/nav.html' %}
+        <div class = "container text-center" id = "mainContainer">
+
+            <div class = "row text-center">
+
+                <div class = "col-md-11 col-sm-11">
+
+                    <h1>Hello {{user.getName}}</h1>
+
+                    <p>What would you like to work on?</p>
+
+                </div>
+
+            </div>
+
+            <div class = "row row-centered" id = "mainRow">
+                <div class = "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-sm-offset-1 col-centered mainBody" id="projects">
+
+                    <h1><a href = "/project/current_projects">Projects<a/></h1>
+                    <!-- Check for amount of active projects-->
+                    <h5><a href = "/project/current_projects">{{project_number}} active projects</a></h5>
+                    <h5><a href = "/coach/project/new_project">Add a new project</a></h5>
+                </div>
+
+                <div class = "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-centered mainBody" id = "habits">
+
+                    <h1><a href = "/habit/current_habits">Habits</a></h1>
+                    <h5><a href = "/habit/current_habits">active habits</a></h5>
+                    <h5><a href = "/coach/new_habit/new_habit_name">Add a habit</a><h5>
+                </div>
+
+                <div class = "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-centered mainBody" id="journal">
+
+                    <h1><a href = "/journal/new_journal_entry">Journal</a></h1>
+                    <h5><a href = "/journal/entries_archive">old entries</a></h5>
+                </div>
+            </div>
+
+            <!-- <footer class="footer">
+              <p>Footer</p>
+            </footer> -->
+
+
+          </div>
+    </body>
+</html>

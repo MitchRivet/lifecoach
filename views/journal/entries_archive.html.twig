@@ -1,0 +1,19 @@
+<!-- Header twig template -->
+
+{% set vars = {
+  'page_title': 'Edit Journal Entry',
+  'css_url': '/css/new_journal_entry.css'
+}
+
+%}
+{% include 'partials/header.html.twig' with vars %}
+    <body>
+        {% include 'partials/nav.html' %}
+
+    {% for entry in entries %}
+        <li><a href="/journal/entries/{{ entry.getId }}">{{ entry.getDate }}</a></li>
+
+    {% endfor %}
+
+  </body>
+</html>
