@@ -18,7 +18,7 @@
 
     $server = 'mysql:host=localhost;dbname=lifecoach';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $DB = new PDO($server, $username, $password);
 
 
