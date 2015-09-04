@@ -17,7 +17,7 @@
 
     $server = 'mysql:host=localhost:3306;dbname=lifecoach';
     $username = 'root';
-    $password = '';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
 
@@ -50,14 +50,14 @@
 
     $app->get('/dashboard', function() use ($app) {
         unset($_SESSION['pcount']);
-        $_SESSION['pcount'] = Project::countProjects(); 
+        $_SESSION['pcount'] = Project::countProjects();
         $new_user = new User("","");
         $user = $new_user->authenticate($_SESSION['gemail']);
         return $app['twig']->render('dashboard.html.twig', array('user' => $user,'project_number' => $_SESSION['pcount']));
     });
 
     $app->post("/dashboard", function() use ($app) {
-        unset($_SESSION['gemail']); 
+        unset($_SESSION['gemail']);
         $_SESSION['gemail'] = $_POST['email'];
         $password = $_POST['password'];
         $new_user = new User("",preg_quote($_POST['email'], "'"),preg_quote($_POST['password'], "'") );
