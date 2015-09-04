@@ -34,12 +34,14 @@
                         of {{ project.getSteps|length }} steps are complete!
                     </p>
 
+                    <p>It's due on {{ project.getDueDate|date("l, F dS, Y") }}. Plenty of time!</p>
+
                     {% include 'coach/partials/project_progress_bar.html.twig' %}
 
-                    <p>Your project is due on {{ project.getDueDate|date("l, F dS, Y") }}.</p>
 
-                    <a href='/coach/active_project/{{ project.getId }}/next_step' role="button" class="btn btn-default">
-                        I'm ready to get started!
+
+                    <a href='/coach/active_project/{{ project.getId }}/next_step' role="button" class="btn btn-primary">
+                        Go!
                     </a>
 
                 </div>

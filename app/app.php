@@ -27,10 +27,10 @@
 
     // Create default Project for all users for adding Chores
     // populate it with (description,motivation,due_date,priority)
-    if(empty(Project::getAll())) {
-        $default_project = new Project("Chores",null,"0000-00-00",0);
-        $default_project->save();
-    }
+    // if(empty(Project::getAll())) {
+    //     $default_project = new Project("Chores",null,"0000-00-00",0);
+    //     $default_project->save();
+    // }
 
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
