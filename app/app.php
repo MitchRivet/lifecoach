@@ -15,7 +15,8 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:3306;dbname=lifecoach';
+
+    $server = 'mysql:host=localhost;dbname=lifecoach';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -23,6 +24,7 @@
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
+
 
     session_start();
 
@@ -68,6 +70,8 @@
         }
         else { return $app['twig']->render('error.html.twig'); }
     });
+
+
 
 
     // Include Other Routes
