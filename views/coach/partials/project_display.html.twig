@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>{{ project.getName }}</h3>
+        {% if project.getMotivation != null %}
+            <p><strong>Motivation:</strong> {{ project.getMotivation }}</p>
+        {% endif %}
+
+        {% if project.getDueDate != '0000-00-00' %}
+            <p><strong>Due :</strong> {{ project.getDueDate|date("l, F dS, Y") }}</p>
+        {% endif %}
+    </div>
+    <div class="panel-body">
+        {% if (steps is defined) and (steps is not empty) %}
+            <div class="list-group">
+                {% for step in steps %}
+                    <div class="list-group-item">{{ step.getPosition }}. {{ step.getDescription}}</div>
+                {% endfor %}
+            </div>
+        {% else %}
+            No steps yet.
+        {% endif %}
+    </div>
+</div>

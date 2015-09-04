@@ -1,0 +1,131 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'projects'
+--
+-- ---
+
+DROP TABLE IF EXISTS `projects`;
+
+CREATE TABLE `projects` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `motivation` VARCHAR(255) NULL DEFAULT NULL,
+  `due_date` DATE NULL DEFAULT NULL,
+  `priority` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'steps'
+--
+-- ---
+
+DROP TABLE IF EXISTS `steps`;
+
+CREATE TABLE `steps` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  `project_id` INTEGER NULL DEFAULT NULL,
+  `position` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'habits'
+--
+-- ---
+
+DROP TABLE IF EXISTS `habits`;
+
+CREATE TABLE `habits` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `motivation` VARCHAR NULL DEFAULT NULL,
+  `interval_days` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'journals'
+--
+-- ---
+
+DROP TABLE IF EXISTS `journals`;
+
+CREATE TABLE `journals` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `content` VARCHAR NULL DEFAULT NULL,
+  `date` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'questions'
+--
+-- ---
+
+DROP TABLE IF EXISTS `questions`;
+
+CREATE TABLE `questions` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `text` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'users'
+--
+-- ---
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id_projects` INTEGER NULL DEFAULT NULL,
+  `id_habits` INTEGER NULL DEFAULT NULL,
+  `id_journals` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE `steps` ADD FOREIGN KEY (project_id) REFERENCES `projects` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (id_projects) REFERENCES `projects` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (id_habits) REFERENCES `habits` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (id_journals) REFERENCES `journals` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `projects` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `steps` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `habits` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `journals` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `questions` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `projects` (`id`,`name`,`motivation`,`due_date`,`priority`) VALUES
+-- ('','','','','');
+-- INSERT INTO `steps` (`id`,`description`,`project_id`,`position`) VALUES
+-- ('','','','');
+-- INSERT INTO `habits` (`id`,`name`,`motivation`,`interval_days`) VALUES
+-- ('','','','');
+-- INSERT INTO `journals` (`id`,`content`,`date`) VALUES
+-- ('','','');
+-- INSERT INTO `questions` (`id`,`text`) VALUES
+-- ('','');
+-- INSERT INTO `users` (`id`,`id_projects`,`id_habits`,`id_journals`) VALUES
+-- ('','','','');

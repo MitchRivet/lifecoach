@@ -1,0 +1,51 @@
+    <!-- Header twig template -->
+
+    {% set vars = {
+      'page_title': 'Current Projects',
+      'css_url': '/css/current_projects.css'
+    }
+
+    %}
+    {% include 'partials/header.html.twig' with vars %}
+
+    <body>
+    <!-- Navbar twig template -->
+
+    {% set active_page = '/project/current_projects' %}
+    {% include 'partials/nav.html' %}
+
+
+    <div class = "container" id = "mainContainer">
+      <div class = "row row-centered" id = "mainRow">
+
+
+        <div class = "col-xl-5 col-lg-5 col-md-5 col-sm-5 col-sm-offset-1 col-centered mainBody" id="projects">
+
+
+        <h1>Active projects</h1>
+          {% if projects is not empty %}
+          {% for project in projects %}
+          <ul>
+              <li><a href="/coach/active_project/{{ project.getId }}">{{ project.getName }}</a></li>
+              <!-- Skip editing for now. Coach does it anyway.-->
+              <!-- <a href="/project/project/{{ project.getId }}">Edit</a> -->
+          </ul>
+          {% endfor %}
+
+          {% else %}
+          <p>No projects currently entered.</p>
+
+          {% endif %}
+          <p><a role="button" class="btn btn-default" href="/coach/new_project">Add new project</a></p>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+
+
+    </body>
+</html>

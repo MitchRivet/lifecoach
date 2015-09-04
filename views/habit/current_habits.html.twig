@@ -1,0 +1,48 @@
+<!-- Header twig template -->
+
+{% set vars = {
+  'page_title': 'Current Habits',
+  'css_url': '/css/current_habits.css'
+}
+
+%}
+
+{% include 'partials/header.html.twig' with vars %}
+
+  <body>
+
+      <!-- Nabar twig template -->
+
+      {% set active_page = '/current_habits' %}
+      {% include 'partials/nav.html' %}
+
+
+    <div class = "container" id = "mainContainer">
+      <div class = "row row-centered" id = "mainRow">
+        <div class = "col-xl-5 col-lg-5 col-md-5 col-sm-5 col-sm-offset-1 col-centered mainBody" id="habits">
+
+          <h1>Active Habits</h1>
+            {% if habits is not empty %}
+            {% for habit in habits %}
+            <ul>
+                <li>{{ habit.getName }}</li>
+                <ul>{{ habit.getIntervalDays }} days (eventually want days completed)</ul>
+                <a href="/habit/habits/{{ habit.getId }}">Edit</a>
+                <a href="/coach/active_habit/progress/{{ habit.getId }}">Coaching</a>
+
+            </ul>
+            {% endfor %}
+
+            {% else %}
+            <p>No habits currently entered.</p>
+
+            {% endif %}
+            <p><a href="/coach/new_habit/new_habit_name">Click here to enter a new habit.</a></p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>

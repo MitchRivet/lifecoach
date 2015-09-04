@@ -1,0 +1,68 @@
+<!-- Header twig template -->
+
+{% set vars = {
+  'page_title': "MindSet :: #{project.getName}: Add a Step",
+  'css_url': '/css/new_project.css'
+}
+
+%}
+
+{% include 'partials/header.html.twig' with vars %}
+
+
+    <body>
+
+        <!-- Nabar twig template -->
+
+        {% set active_page = '/coach/current_projects' %}
+        {% include 'partials/nav.html' %}
+
+        <!-- //////////////////////////////// -->
+
+        <div class = "container" id = "mainContainer">
+          <div class = "row row-centered" id = "mainRow">
+
+            <div class = "col-xl-8 col-lg-8 col-md-11 col-sm-12 col-sm-offset-1 col-centered mainBody">
+
+            <h1>Here's what you came up with.</h1>
+            <pre>{{ dump }}</pre>
+
+            {% if project.getSteps|length == 0 %}
+                <h3>Let's think about a first step.</h3>
+                <p>Looking at your brain dump, can you pick one step that <strong>must</strong> be done first?</p>
+            {% else %}
+                <h3>Let's talk next steps.</h3>
+                <p>What's the most crucial thing to do now?</p>
+            {% endif %}
+            </div>
+            <div class = "col-xl-5 col-lg-5 col-md-5 col-sm-5 col-sm-offset-1 col-centered mainBody">
+
+
+              <form action='/coach/new_project/{{ project.getId }}/step' method='post'>
+                <div class="form-group">
+                  <!-- pass dump in hidden post so user can continue to reference it-->
+                    <input type="hidden" name="dump" value="{{dump}}">
+                    <input id = 'step_description' name='step_description' autofocus class ='form-control' type='text'
+                        {% if project.getSteps|length == 0 %}
+                            placeholder='First step'>
+                        {% else %}
+                            placeholder='Next step'>
+                        {% endif %}
+                </div>
+
+                    <button class = "btn btn-primary" type='submit'>Add step</button>
+                    <a href="/coach/new_project/{{ project.getId }}/due_date" class="btn btn-info" role="button">That's enough steps.</a>
+              </form>
+
+              {% include 'coach/partials/project_display.html.twig' %}
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+    </body>
+</html>

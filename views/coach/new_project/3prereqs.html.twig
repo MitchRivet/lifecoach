@@ -1,0 +1,52 @@
+<!-- Header twig template -->
+
+{% set vars = {
+  'page_title': "MindSet :: #{project.getName}: Brain Dump",
+  'css_url': '/css/new_project.css'
+}
+
+%}
+
+{% include 'partials/header.html.twig' with vars %}
+
+
+    <body>
+
+        <!-- Nabar twig template -->
+
+        {% set active_page = '/coach/current_projects' %}
+        {% include 'partials/nav.html' %}
+
+
+        <div class = "container" id = "mainContainer">
+          <div class = "row row-centered" id = "mainRow">
+
+            <div class = "col-xl-8 col-lg-8 col-md-11 col-sm-12 col-sm-offset-1 col-centered mainBody">
+
+            <h1>Brain-Dump</h1>
+            <h3>Let's try something.</h3>
+            <p>Try to think of everything you need to do in order to finish this project.</p>
+            <p>Don't worry about the order right now.</p>
+            <p>I'll help you put together a plan in the next few pages.</p>
+            </div>
+            <div class = "col-xl-5 col-lg-5 col-md-5 col-sm-5 col-sm-offset-1 col-centered mainBody">
+
+
+              <form action='/coach/new_project/{{ project.getId }}/step' method='post'>
+                <div class="form-group">
+                    <textarea id = 'dump' name='dump' class ='form-control' type='text' rows='12'></textarea>
+                </div>
+
+                    <button class = "btn btn-primary" type='submit'>Continue</button>
+              </form>
+
+                <div>
+                    {% include 'coach/partials/project_display.html.twig' %}
+                </div>
+            </div>
+          </div>
+
+        </div>
+
+    </body>
+</html>
