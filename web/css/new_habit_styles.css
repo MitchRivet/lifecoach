@@ -41,9 +41,3 @@ html, body {
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff;
 }
-
-/* Body styles */
-
-#mainContainer {
-  padding-top: 5%;
-}
