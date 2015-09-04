@@ -2,3 +2,12 @@ html, body {
   height: 100%;
 
 }
+
+.container {
+  margin-top: 5%;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 18px;
+}
